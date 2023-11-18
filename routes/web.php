@@ -14,9 +14,7 @@ use App\Http\Controllers\ShoeController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [ShoeController::class, 'index']);
 
 Auth::routes();
 
