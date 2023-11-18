@@ -1,21 +1,21 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', [ShoeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [ShoeController::class, 'home'])->name('home');
+
+
+Route::get('/shoes', [ShoeController::class, 'index'])->name('shoes');
+Route::get('/shoes/detail/{id}', [ShoeController::class, 'detail']);
+
+Route::get('shoes/add', [ShoeController::class, 'add']);
+Route::post('shoes/add', [ShoeController::class, 'create'])->name('create');
+
+Route::get('/shoes/delete/{id}', [ShoeController::class, 'delete']);
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ShoeController;
+use App\Models\Shoe;
 
 class HomeController extends Controller
 {
@@ -10,12 +12,7 @@ class HomeController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+     *
     /**
      * Show the application dashboard.
      *
@@ -23,6 +20,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $data = Shoe::all();
+
+        // return view('home', [
+        //     'shoes' => $data
+        // ]);
         return view('home');
     }
 }
