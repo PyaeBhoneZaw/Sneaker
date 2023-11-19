@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Shoe>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ShoeModel>
  */
-class ShoeFactory extends Factory
+class ShoeModelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,9 @@ class ShoeFactory extends Factory
     public function definition(): array
     {
         return [
-            'shoe_name' => $this->faker->sentence,
-            'shoe_model_id' => rand(1, 10),
-            'price' => rand(100, 700),
+            "name" => $this->faker->word,
+            "shoe_id" => rand(1, 20),
+            "brand_id" => rand(1, 5),
         ];
     }
 }

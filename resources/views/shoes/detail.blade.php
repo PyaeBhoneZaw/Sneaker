@@ -19,6 +19,14 @@
                         {{ $shoe->created_at->diffForHumans() }}
                     </div>
                     <p class="card-text">
+                        <b>Brand:</b>
+                        {{ $shoe->shoeModel->brand->name }}
+                    </p>
+                    <p class="card-text">
+                        <b>Model:</b>
+                        {{ $shoe->shoeModel->name }}
+                    </p>
+                    <p class="card-text">
                         $ {{ $shoe->price }}
                     </p>
                     <a href="{{ url("/shoes/delete/$shoe->id") }}" class="btn btn-outline-danger">Delete</a>

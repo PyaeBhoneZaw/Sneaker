@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
@@ -66,7 +65,7 @@
                                     <div class="col-6 col-md-12 mt-lg-2">
                                         <div class="card-title"><b>Name: </b>{{ $shoe->shoe_name }}</div>
                                         <span class="card-text">
-                                            {{-- <b>Price: $</b> --}}
+
                                             <b> $ {{ $shoe->price }} </b>
                                             <br>
                                             <b>Date: </b>

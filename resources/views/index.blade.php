@@ -6,30 +6,92 @@
         <div class="row flex-wrap">
             @foreach ($shoes as $shoe)
                 <div class="col-12 col-md-6 col-xl-3 p-3">
-                    <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
-                        <div class="card p-3">
-                            <div class="card-body">
-                                <div class="row flex-wrap">
+
+                    <div class="card p-3">
+                        <div class="card-body">
+                            <div class="row flex-wrap">
+                                <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
                                     <div class="col-6 col-md-12">
                                         <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000"
                                             class="card-img">
                                     </div>
-                                    <div class="col-6 col-md-12 mt-lg-2">
-                                        <div class="card-title"><b>Name: </b>{{ $shoe->shoe_name }}</div>
-                                        <span class="card-text">
-                                            {{-- <b>Price: $</b> --}}
-                                            <b> $ {{ $shoe->price }} </b>
-                                            <br>
-                                            <b>Date: </b>
-                                            <small class="text-secondary">
-                                                {{ $shoe->created_at->diffForHumans() }} </small>
-                                            <br>
-                                        </span>
+                                </a>
+                                <div class="col-6 col-md-12 mt-lg-2">
+                                    <div class="card-header mb-3">
+                                        <b>{{ $shoe->shoe_name }}</b>
                                     </div>
+                                    <span class="card-text mt-2">
+                                        <b>Brand: {{ $shoe->shoeModel->brand->name }} </b>
+                                        <br>
+                                    </span>
+                                    <span class="card-text mt-2">
+                                        <b>Model: {{ $shoe->shoeModel->name }} </b>
+                                        <br>
+                                    </span>
+                                    <span class="card-text mt-2">
+                                        <b> $ {{ $shoe->price }} </b>
+                                        <br>
+                                    </span>
+
                                 </div>
+
+                            </div>
+                            <button type="button" class="btn btn-outline-dark mt-2 mb-0 w-25" data-bs-toggle="modal"
+                                data-bs-target="#editModal{{ $shoe->id }}">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                {{-- Edit Modal --}}
+                <div class="modal fade" id="editModal{{ $shoe->id }}" tabindex="-1" aria-labelledby="editModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content p-3">
+                            <div class="modal-header">
+                                <h3 class="modal-title mx-auto" id="editModalLabel">Edit Shoe
+                                </h3>
+                                <span>
+                                    <button type="button" class="btn-close ml-auto" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </span>
+
+                            </div>
+                            <div class="modal-body">
+                                <!-- Your update form goes here -->
+                                <form action="{{ route('update', ['id' => $shoe->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="mb-3">
+                                        <label for="shoe_name" class="form-label">Shoe Name</label>
+                                        <input type="text" class="form-control" id="shoe_name" name="shoe_name"
+                                            value="{{ $shoe->shoe_name }}">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="model" class="form-label">Model</label>
+                                        <input type="text" class="form-control" id="model" name="model"
+                                            value="{{ $shoe->shoeModel->name }}">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="price" class="form-label">Price</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" id="price" name="price"
+                                                value="{{ $shoe->price }}">
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-outline-success text-end">Update</button>
+                                </form>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             @endforeach
         </div>

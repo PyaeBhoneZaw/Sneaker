@@ -49,13 +49,41 @@ class ShoeController extends Controller
         }
 
 
-        $shoe = new Shoe;
-        $shoe->shoe_name = request()->shoe_name;
-        $shoe->model_id = request()->model;
-        $shoe->price = request()->price;
-        $shoe->save();
+        $data = new Shoe;
+        $data->shoe_name = request()->shoe_name;
+        $data->model_id = request()->model;
+        $data->price = request()->price;
+        $data->save();
 
-        return redirect('/');
+        return redirect('/shoes')->with('info', 'Shoe Added');
+    }
+
+    public function edit($id)
+    {
+        $data = Shoe::find($id);
+        return view('shoes.edit', compact('shoe'));
+    }
+
+    public function update($id)
+    {
+        $validator = validator(request()->all(), [
+            'shoe_name' => 'required',
+            'model' => 'required',
+            'price' => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $data = Shoe::find($id);
+        $data->shoe_name = request()->shoe_name;
+        $data->model_id = request()->model;
+        $data->price = request()->price;
+        $data->save();
+
+        return redirect('/shoes')->with('info', 'Shoe Updated');
     }
 
 
