@@ -23,8 +23,8 @@
 
             {{-- Brands --}}
             <div class="mb-3">
-                <label for="brand">Select Brand:</label>
                 <select name="brand" id="brand" class="form-select">
+                    <option value="" selected disabled>Select a Brand</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->id }}" data-models="{{ json_encode($brand->shoeModel) }}">
                             {{ $brand->name }}
@@ -32,6 +32,7 @@
                     @endforeach
                 </select>
             </div>
+
 
             {{-- Models --}}
             <div class="mb-3">
