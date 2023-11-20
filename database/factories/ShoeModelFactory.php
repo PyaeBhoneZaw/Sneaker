@@ -19,7 +19,7 @@ class ShoeModelFactory extends Factory
         return [
             "name" => $this->faker->word,
             "shoe_id" => rand(1, 20),
-            "brand_id" => rand(1, 5),
+            "brand_id" => rand(1, 4),
         ];
     }
 }

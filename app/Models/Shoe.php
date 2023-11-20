@@ -10,6 +10,6 @@ class Shoe extends Model
     use HasFactory;
     public function shoeModel()
     {
-        return $this->belongsTo('App\Models\ShoeModel');
+        return $this->hasMany('App\Models\ShoeModel');
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Shoe;
+use App\Models\ShoeModel;
 use Illuminate\Http\Request;
 
 class ShoeController extends Controller
@@ -25,13 +27,11 @@ class ShoeController extends Controller
 
     public function add()
     {
-        $data = [
-            ["id" => 1, "name" => "Nike"],
-            ["id" => 2, "name" => "Adidas"],
-            ["id" => 3, "name" => "Air Jordan"]
-        ];
+        $brand = Brand::with('shoeModel')->get();
+        $model = ShoeModel::all();
         return view('shoes.add', [
-            'brands' => $data
+            'brands' => $brand,
+            'models' => $model
         ]);
     }
 
