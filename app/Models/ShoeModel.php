@@ -13,4 +13,9 @@ class ShoeModel extends Model
     {
         return $this->belongsTo('App\Models\Brand');
     }
+
+    public function shoes()
+    {
+        return $this->hasMany('App\Models\Shoe');
+    }
 }
