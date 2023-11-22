@@ -20,11 +20,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $data = Shoe::all();
-
-        // return view('home', [
-        //     'shoes' => $data
-        // ]);
-        return view('home');
+        // $shoes = session('shoes', collect()); // Use 'collect()' as a fallback if 'shoes' is not set
+        $data = Shoe::orderBy('created_at', 'desc')->take(8)->get();
+        return view('home', ['shoes' => $data]);
     }
 }

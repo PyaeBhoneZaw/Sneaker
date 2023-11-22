@@ -15,7 +15,7 @@
 
         <form method="POST" class="m-4" id="shoeForm">
             @csrf
-            <h1>Add Shoes</h1>
+            <h1 class="mb-4">Add Shoes</h1>
 
             <div class="mb-3">
                 <input type="text" name="shoe_name" class="form-control" placeholder="Enter Shoe Name">

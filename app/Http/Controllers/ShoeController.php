@@ -41,17 +41,15 @@ class ShoeController extends Controller
             'shoe_name' => 'required',
             'model' => 'required',
             'price' => 'required',
-
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
 
-
         $data = new Shoe;
         $data->shoe_name = request()->shoe_name;
-        $data->model_id = request()->model;
+        $data->shoe_model_id = request()->model;
         $data->price = request()->price;
         $data->save();
 

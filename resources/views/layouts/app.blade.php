@@ -14,6 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -35,10 +36,27 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item m-2">
-                            <a href="{{ route('shoes') }}" class="nav-link">{{ __('Shoes') }}</a>
+                            <a href="{{ route('home') }}" class="nav-link">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item m-2">
-                            <a href="{{ route('create') }}" class="nav-link">{{ __('Add Shoes') }}</a>
+                            <a href="{{ route('shoes') }}" class="nav-link">{{ __('Shoes') }}</a>
+                        </li>
+                        <li class="nav-item dropdown m-2">
+                            <a id="navbarDropdown" class="nav-link" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Add
+                            </a>
+                            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item mb-1" href="{{ route('create') }}">
+                                    {{ __('Add Shoe') }}
+                                </a>
+                                <a class="dropdown-item mb-1" href="{{ route('brand.create') }}">
+                                    {{ __('Add Brand') }}
+                                </a>
+                                <a class="dropdown-item mb-1" href="{{ route('model.create') }}">
+                                    {{ __('Add Model') }}
+                                </a>
+                            </div>
                         </li>
                     </ul>
 
@@ -47,13 +65,13 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-item m-2">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item m-2">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
@@ -191,6 +209,7 @@
         </footer>
 
     </div>
+
 </body>
 
 </html>

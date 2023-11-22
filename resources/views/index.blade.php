@@ -3,6 +3,12 @@
     <div class="container">
         <h1>Shoes List</h1>
 
+        @if (session('info'))
+            <div class="alert alert-info">
+                {{ session('info') }}
+            </div>
+        @endif
+
         <div class="row flex-wrap">
             @foreach ($shoes as $shoe)
                 <div class="col-12 col-md-6 col-xl-3 p-3">
