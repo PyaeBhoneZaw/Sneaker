@@ -17,7 +17,7 @@ Route::get('/shoes/detail/{id}', [ShoeController::class, 'detail']);
 
 
 Route::get('shoes/add', [ShoeController::class, 'add']);
-Route::post('shoes/add', [ShoeController::class, 'create'])->name('create');
+Route::post('shoes/add', [ShoeController::class, 'create'])->name('shoe.create');
 
 Route::get('brands/add', [BrandController::class, 'add']);
 Route::post('brands/add', [BrandController::class, 'create'])->name('brand.create');
@@ -27,7 +27,9 @@ Route::post('models/add', [ModelController::class, 'create'])->name('model.creat
 
 
 Route::get('/shoes/edit/{edit}', [ShoeController::class, 'edit'])->name('edit');
-Route::put('/shoes/update/{id}', [ShoeController::class, 'update'])->name('update');
+Route::put('/shoes/update/{id}', [ShoeController::class, 'update'])->name('shoes.update');
+
+Route::get('shoes/search', [ShoeController::class, 'search'])->name('shoes.search');
 
 
 Route::get('/shoes/delete/{id}', [ShoeController::class, 'delete']);

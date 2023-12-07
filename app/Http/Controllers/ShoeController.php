@@ -27,7 +27,7 @@ class ShoeController extends Controller
 
     public function add()
     {
-        $brand = Brand::with('shoeModel')->get();
+        $brand = Brand::with('shoeModels')->get();
         $model = ShoeModel::all();
         return view('shoes.add', [
             'brands' => $brand,
@@ -66,9 +66,7 @@ class ShoeController extends Controller
     {
         $validator = validator(request()->all(), [
             'shoe_name' => 'required',
-            'model' => 'required',
             'price' => 'required',
-
         ]);
 
         if ($validator->fails()) {
@@ -77,13 +75,11 @@ class ShoeController extends Controller
 
         $data = Shoe::find($id);
         $data->shoe_name = request()->shoe_name;
-        $data->model_id = request()->model;
         $data->price = request()->price;
         $data->save();
 
         return redirect('/shoes')->with('info', 'Shoe Updated');
     }
-
 
 
     public function detail($id)
@@ -92,5 +88,22 @@ class ShoeController extends Controller
         return view('shoes.detail', [
             'shoe' => $data
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $shoes = Shoe::where('shoe_name', 'like', "%$query%")
+            ->orWhereHas('shoeModel', function ($modelQuery) use ($query) {
+                $modelQuery->where('name', 'like', "%$query%");
+            })
+            ->orWhereHas('shoeModel.brand', function ($brandQuery) use ($query) {
+                $brandQuery->where('name', 'like', "%$query%");
+            })
+            ->get();
+
+        // Pass the results to a view or return as needed
+        return view('search-results', ['query' => $query, 'shoes' => $shoes]);
     }
 }

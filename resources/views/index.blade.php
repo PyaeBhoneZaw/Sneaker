@@ -4,9 +4,14 @@
         <h1>Shoes List</h1>
 
         @if (session('info'))
-            <div class="alert alert-info">
+            <div class="alert alert-info" id="info">
                 {{ session('info') }}
             </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
         @endif
 
         <div class="row flex-wrap">
@@ -68,7 +73,7 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Your update form goes here -->
-                                <form action="{{ route('update', ['id' => $shoe->id]) }}" method="POST">
+                                <form action="{{ route('shoes.update', ['id' => $shoe->id]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
 
@@ -78,11 +83,11 @@
                                             value="{{ $shoe->shoe_name }}">
                                     </div>
 
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="model" class="form-label">Model</label>
                                         <input type="text" class="form-control" id="model" name="model"
                                             value="{{ $shoe->shoeModel->name }}">
-                                    </div>
+                                    </div> --}}
 
                                     <div class="mb-3">
                                         <label for="price" class="form-label">Price</label>

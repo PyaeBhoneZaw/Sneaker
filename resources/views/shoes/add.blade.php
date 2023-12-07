@@ -26,7 +26,7 @@
                 <select name="brand" id="brand" class="form-select">
                     <option value="" selected disabled>Select a Brand</option>
                     @foreach ($brands as $brand)
-                        <option value="{{ $brand->id }}" data-models="{{ json_encode($brand->shoeModel) }}">
+                        <option value="{{ $brand->id }}" data-models="{{ json_encode($brand->shoeModels) }}">
                             {{ $brand->name }}
                         </option>
                     @endforeach

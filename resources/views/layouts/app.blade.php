@@ -13,6 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 
     <!-- Scripts -->
@@ -47,7 +48,7 @@
                                 Add
                             </a>
                             <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item mb-1" href="{{ route('create') }}">
+                                <a class="dropdown-item mb-1" href="{{ route('shoe.create') }}">
                                     {{ __('Add Shoe') }}
                                 </a>
                                 <a class="dropdown-item mb-1" href="{{ route('brand.create') }}">
@@ -59,6 +60,19 @@
                             </div>
                         </li>
                     </ul>
+
+                    {{-- Search Bar --}}
+
+                    <div class="mx-auto">
+                        <form class="form-inline" method="GET" action="{{ route('shoes.search') }}">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for brand or shoe"
+                                    name="q" required>
+                                <button class="btn btn-outline-secondary" type="submit"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
+                    </div>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
