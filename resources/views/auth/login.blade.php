@@ -46,8 +46,6 @@
                                     <button type="submit" class="btn btn-outline-dark">
                                         {{ __('Login') }}
                                     </button>
-
-
                                 </div>
                             </div>
                         </form>

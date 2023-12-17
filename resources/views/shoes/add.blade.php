@@ -13,7 +13,7 @@
             </div>
         @endif
 
-        <form method="POST" class="m-4" id="shoeForm">
+        <form method="POST" class="m-3 card p-4 bg-dark-subtle" id="shoeForm">
             @csrf
             <h1 class="mb-4">Add Shoes</h1>
 

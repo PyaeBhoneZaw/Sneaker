@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 
 class ShoeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin')->only(['add', 'create']);
+    }
     public function index()
     {
-        $data = Shoe::all();
+        $data = Shoe::latest()->paginate(12);
         return view('index', [
             'shoes' => $data
         ]);

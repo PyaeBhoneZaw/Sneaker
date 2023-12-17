@@ -22,7 +22,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/logo.png') }}" style="height: 50px">
@@ -42,23 +42,27 @@
                         <li class="nav-item m-2">
                             <a href="{{ route('shoes') }}" class="nav-link">{{ __('Shoes') }}</a>
                         </li>
-                        <li class="nav-item dropdown m-2">
-                            <a id="navbarDropdown" class="nav-link" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Add
-                            </a>
-                            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item mb-1" href="{{ route('shoe.create') }}">
-                                    {{ __('Add Shoe') }}
+                        @if (Auth::user() && Auth::user()->role == 'admin')
+                            <li class="nav-item dropdown m-2">
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Add
                                 </a>
-                                <a class="dropdown-item mb-1" href="{{ route('brand.create') }}">
-                                    {{ __('Add Brand') }}
-                                </a>
-                                <a class="dropdown-item mb-1" href="{{ route('model.create') }}">
-                                    {{ __('Add Model') }}
-                                </a>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item mb-1" href="{{ route('shoe.create') }}">
+                                        {{ __('Add Shoe') }}
+                                    </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('brand.create') }}">
+                                        {{ __('Add Brand') }}
+                                    </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('model.create') }}">
+                                        {{ __('Add Model') }}
+                                    </a>
+                                </div>
+                            </li>
+                        @else
+                        @endif
+
                     </ul>
 
                     {{-- Search Bar --}}
@@ -118,7 +122,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-light shadow text-dark text-center text-lg-start">
+        <footer class=" bg-dark text-white text-center text-lg-start">
             <!-- Grid container -->
             <div class="container p-4">
                 <!--Grid row-->
@@ -134,16 +138,16 @@
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                        <h5 class="mb-2">Help</h5>
+                        <h4 class="mb-2">Help</h4>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#" class="text-secondary text-decoration-none">Contact</a>
+                                <a href="#" class="text-white text-decoration-none">Contact</a>
                             </li>
                             <li>
-                                <a href="#" class="text-secondary text-decoration-none">FAQ</a>
+                                <a href="#" class="text-white text-decoration-none">FAQ</a>
                             </li>
                             <li>
-                                <a href="#" class="text-secondary text-decoration-none">Blah Blah</a>
+                                <a href="#" class="text-white text-decoration-none">Blah Blah</a>
                             </li>
                         </ul>
 
@@ -152,17 +156,17 @@
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                        <h5 class="mb-2">Links</h5>
+                        <h4 class="mb-2">Links</h4>
 
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#!" class="text-secondary text-decoration-none">List</a>
+                                <a href="#!" class="text-white text-decoration-none">List</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-secondary text-decoration-none">Upcoming</a>
+                                <a href="#!" class="text-white text-decoration-none">Upcoming</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-secondary text-decoration-none">Most Popular</a>
+                                <a href="#!" class="text-white text-decoration-none">Most Popular</a>
                             </li>
                         </ul>
                     </div>
@@ -172,8 +176,8 @@
                     <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                         <div class="d-flex flex-column text-lg-end">
                             <div class="ml-auto">
-                                <h5 class="text-uppercase">SNEAKER HUB</h5>
-                                <p class="text-secondary">© 2023 Copyright</p>
+                                <h3 class="text-uppercase">Sneaker hub</h3>
+                                <p class="text-white">© 2023 Copyright</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"
                                         class="mx-2">

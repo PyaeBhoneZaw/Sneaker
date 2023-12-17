@@ -10,7 +10,7 @@ class ModelController extends Controller
 {
     public function add()
     {
-        $brand = Brand::with('shoeModel')->get();
+        $brand = Brand::with('shoeModels')->get();
         $model = ShoeModel::all();
         return view('shoe_models.add_models', [
             'brands' => $brand,

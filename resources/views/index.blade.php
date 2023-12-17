@@ -22,12 +22,12 @@
                         <div class="card-body">
                             <div class="row flex-wrap">
                                 <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
-                                    <div class="col-6 col-md-12">
+                                    <div class="col-12 col-md-12">
                                         <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000"
                                             class="card-img">
                                     </div>
                                 </a>
-                                <div class="col-6 col-md-12 mt-lg-2">
+                                <div class="col-12 col-md-12 mt-lg-2">
                                     <div class="card-header mb-3">
                                         <b>{{ $shoe->shoe_name }}</b>
                                     </div>
@@ -43,17 +43,19 @@
                                         <b> $ {{ $shoe->price }} </b>
                                         <br>
                                     </span>
-
                                 </div>
 
                             </div>
-                            <button type="button" class="btn btn-outline-dark mt-2 mb-0 w-25" data-bs-toggle="modal"
-                                data-bs-target="#editModal{{ $shoe->id }}">
-                                Edit
-                            </button>
+                            @if (Auth::user() && Auth::user()->role == 'admin')
+                                <div>
+                                    <button type="button" class="btn btn-outline-dark mt-2 mb-0 w-25"
+                                        data-bs-toggle="modal" data-bs-target="#editModal{{ $shoe->id }}">
+                                        Edit
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
-
 
                 </div>
 
@@ -105,6 +107,11 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center mt-5">
+                {{ $shoes->links() }}
+            </div>
+
+
         </div>
     </div>
 @endsection

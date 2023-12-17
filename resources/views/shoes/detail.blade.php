@@ -29,7 +29,9 @@
                     <p class="card-text">
                         $ {{ $shoe->price }}
                     </p>
-                    <a href="{{ url("/shoes/delete/$shoe->id") }}" class="btn btn-outline-danger">Delete</a>
+                    @if (Auth::user() && Auth::user()->role == 'admin')
+                        <a href="{{ url("/shoes/delete/$shoe->id") }}" class="btn btn-outline-danger">Delete</a>
+                    @endif
                 </div>
             </div>
         </div>
