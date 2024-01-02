@@ -3,6 +3,16 @@
 @section('content')
     <div class="container" style="max-width: 600px">
 
+        @if (session('info'))
+            <div class="alert alert-info" id="info">
+                {{ session('info') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -13,7 +23,7 @@
             </div>
         @endif
 
-        <form method="POST" class="m-3 card p-4 bg-dark-subtle" id="shoeForm">
+        <form method="POST" class="m-3 card p-4" id="shoeForm">
             @csrf
             <h1 class="mb-4">Add Shoes</h1>
 
@@ -33,10 +43,8 @@
                 </select>
             </div>
 
-
             {{-- Models --}}
-            <div class="mb-3">
-                <label for="model">Select Model:</label>
+            <div class="mb-3" id="modelsInput" style="display: none;">
                 <select name="model" id="model" class="form-select">
                     <!-- Models will be dynamically populated here -->
                 </select>
@@ -69,8 +77,14 @@
                             $('#model').append('<option value="' + model.id + '">' + model.name +
                                 '</option>');
                         });
+
+                        // Show the Models input when a brand is selected
+                        $('#modelsInput').slideDown();
                     } else {
                         console.error('Invalid models data:', models);
+
+                        // Hide the Models input if no models are available
+                        $('#modelsInput').slideUp();
                     }
                 });
             });

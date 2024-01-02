@@ -12,12 +12,12 @@
                         <div class="card-body">
                             <div class="row flex-wrap">
                                 <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
-                                    <div class="col-6 col-md-12">
+                                    <div class="col-12 col-md-12">
                                         <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000"
                                             class="card-img">
                                     </div>
                                 </a>
-                                <div class="col-6 col-md-12 mt-lg-2">
+                                <div class="col-12 col-md-12 mt-lg-2">
                                     <div class="card-header mb-3">
                                         <b>{{ $shoe->shoe_name }}</b>
                                     </div>

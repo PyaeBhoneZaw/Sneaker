@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function cartItems()
+    {
+        return $this->hasMany('App\Models\Cart');
+    }
     /**
      * The attributes that are mass assignable.
      *

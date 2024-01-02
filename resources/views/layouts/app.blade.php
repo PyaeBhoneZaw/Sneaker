@@ -22,7 +22,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top d-block ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/logo.png') }}" style="height: 50px">
@@ -60,6 +60,23 @@
                                     </a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown m-2">
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Manage
+                                </a>
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item mb-1" href="{{ route('shoes.shoe_dashboard') }}">
+                                        {{ __('Manage Shoes') }}
+                                    </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('brands.brand_dashboard') }}">
+                                        {{ __('Manage Brand') }}
+                                    </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('shoe_models.model_dashboard') }}">
+                                        {{ __('Manage Model') }}
+                                    </a>
+                                </div>
+                            </li>
                         @else
                         @endif
 
@@ -78,8 +95,14 @@
                         </form>
                     </div>
 
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <a href="{{ route('cart.index') }}" class="nav-item m-3 text-decoration-none text-dark">
+                            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                        </a>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -87,14 +110,8 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item m-2">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown my-auto">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -107,20 +124,25 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         @endguest
+
                     </ul>
                 </div>
             </div>
         </nav>
 
+
         <main class="py-4 min-vh-100">
             @yield('content')
         </main>
+
+
 
         <footer class=" bg-dark text-white text-center text-lg-start">
             <!-- Grid container -->

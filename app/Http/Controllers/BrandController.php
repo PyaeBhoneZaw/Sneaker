@@ -29,4 +29,16 @@ class BrandController extends Controller
 
         return redirect('/brands/add')->with('info', 'Brand Added');
     }
+
+    public function delete($id)
+    {
+        $brand = Brand::find($id);
+        $brand->delete();
+        return back()->with('info', 'Brand Deleted');
+    }
+    public function dashboard()
+    {
+        $data = Brand::all();
+        return view('brands.brand_dashboard', ['brands' => $data]);
+    }
 }

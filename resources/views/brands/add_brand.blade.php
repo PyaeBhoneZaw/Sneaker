@@ -4,7 +4,7 @@
     <div class="container" style="max-width: 600px">
 
         @if (session('info'))
-            <div class="alert alert-info">
+            <div class="alert alert-info" id="info">
                 {{ session('info') }}
             </div>
             <script>
@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        <form method="POST" class="m-4" id="shoeForm">
+        <form method="POST" class="m-4 card p-5" id="shoeForm">
             @csrf
             <h1 class="mb-4">Add Brand</h1>
 

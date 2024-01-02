@@ -21,6 +21,11 @@ class ShoeController extends Controller
             'shoes' => $data
         ]);
     }
+    public function dashboard()
+    {
+        $data = Shoe::all();
+        return view('shoes.shoes_dashboard', ['shoes' => $data]);
+    }
 
     public function home()
     {
@@ -64,7 +69,7 @@ class ShoeController extends Controller
     public function edit($id)
     {
         $data = Shoe::find($id);
-        return view('shoes.edit', compact('shoe'));
+        return view('/shoes', compact('shoe'));
     }
 
     public function update($id)
@@ -86,6 +91,13 @@ class ShoeController extends Controller
         return redirect('/shoes')->with('info', 'Shoe Updated');
     }
 
+    public function delete($id)
+    {
+        $shoe = Shoe::find($id);
+        $shoe->delete();
+        return back()->with('info', 'Shoe Deleted');
+    }
+
 
     public function detail($id)
     {
@@ -94,6 +106,31 @@ class ShoeController extends Controller
             'shoe' => $data
         ]);
     }
+
+
+    // public function addToCart(Request $request, $id)
+    // {
+    //     if (Auth::check()) {
+    //         $validator = validator(request()->all(), [
+    //             'shoe_size' => 'required',
+    //         ]);
+
+    //         if ($validator->fails()) {
+    //             return back()->withErrors('Please Select Size');
+    //         }
+
+    //         $shoe = Shoe::find($id);
+    //         $selectedSize = $request->input('selected_size');
+
+    //         return view('cart', [
+    //             'shoe' => $shoe,
+    //             'selectedSize' => $selectedSize,
+    //         ]);
+    //     }
+    //     session(['previous_url' => url()->previous()]);
+
+    //     return redirect()->route('login');
+    // }
 
     public function search(Request $request)
     {

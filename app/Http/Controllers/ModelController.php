@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\ShoeModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class ModelController extends Controller
@@ -35,5 +36,18 @@ class ModelController extends Controller
         $data->save();
 
         return redirect('/brands/add')->with('info', 'Brand Added');
+    }
+
+
+    public function delete($id)
+    {
+        $model = ShoeModel::find($id);
+        $model->delete();
+        return back()->with('info', 'Model Deleted');
+    }
+    public function dashboard()
+    {
+        $data = ShoeModel::all();
+        return view('shoe_models.model_dashboard', ['models' => $data]);
     }
 }

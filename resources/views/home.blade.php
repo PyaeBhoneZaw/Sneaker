@@ -11,7 +11,8 @@
             </div>
         </div>
         <div class="col-md-12 mt-3">
-            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" style="height: 500px">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                data-bs-interval="2000" style="height: 500px">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="{{ asset('images/AJ_Dior.jpg') }}" class="d-block w-100 " alt="Slide 1"
@@ -29,7 +30,7 @@
                         <img src="{{ asset('images/AJ4/Air Jordan 4 Retro SE Craft - Olive.jpg') }}" class="d-block w-100"
                             alt="Slide 2" style="object-fit: cover; height: 500px;">
                     </div>
-                    <!-- Add more slides as needed -->
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
@@ -67,10 +68,6 @@
                                         <span class="card-text">
 
                                             <b> $ {{ $shoe->price }} </b>
-                                            <br>
-                                            <b>Date: </b>
-                                            <small class="text-secondary">
-                                                {{ $shoe->created_at->diffForHumans() }} </small>
                                             <br>
                                         </span>
                                     </div>

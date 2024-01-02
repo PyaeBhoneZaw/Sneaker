@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Shoe;
 use App\Models\ShoeModel;
+use App\Models\Size;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
