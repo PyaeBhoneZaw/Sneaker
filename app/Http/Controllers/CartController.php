@@ -49,6 +49,22 @@ class CartController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function updateQuantity($id)
+    {
+        $validator = validator(request()->all(), [
+            'shoe_size' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors('Please Select Size');
+        }
+        $data = Cart::find($id);
+        $data->quantity = request()->quantity;
+        $data->save();
+
+        return back()->with('info', 'Added to Cart');
+    }
     public function removeFromCart($cartItemId)
     {
         $cartItem = Cart::findOrFail($cartItemId);

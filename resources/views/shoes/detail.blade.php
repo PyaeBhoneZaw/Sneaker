@@ -37,6 +37,7 @@
                     class="fa-solid fa-angle-left fa-2xl"></i></a>
         </ol>
 
+
         <div class="row g-0">
             <div class="col-md-6 col-sm-12 mb-3 mt-4" style="max-width: auto">
                 <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000" class="card-img">

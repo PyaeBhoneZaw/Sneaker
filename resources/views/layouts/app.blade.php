@@ -99,9 +99,50 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a href="{{ route('cart.index') }}" class="nav-item m-3 text-decoration-none text-dark">
-                            <i class="fa-solid fa-cart-shopping fa-lg"></i>
-                        </a>
+                        {{-- <div class="nav-item m-3">
+                            @if (auth()->user()->cartItems()->count() > 0)
+                                <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
+                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                    <span class="badge bg-danger">
+                                        {{ auth()->user()->cartItems()->count() }}
+                                    </span>
+                                </a>
+                            @else
+                                <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
+                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                </a>
+                            @endif
+                        </div> --}}
+                        @auth
+                            @if (auth()->user()->cartItems())
+                                <div class="nav-item m-3">
+                                    <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
+                                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                        @if (auth()->user()->cartItems()->count() > 0)
+                                            <span class="badge bg-danger">
+                                                {{ auth()->user()->cartItems()->count() }}
+                                            </span>
+                                        @endif
+                                    </a>
+                                </div>
+                            @else
+                                <div class="nav-item m-3">
+                                    <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
+                                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                    </a>
+                                </div>
+                            @endif
+                        @else
+                            <div class="nav-item m-3">
+                                <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
+                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                                </a>
+                            </div>
+                        @endauth
+
+
+
+
 
                         <!-- Authentication Links -->
                         @guest
@@ -138,9 +179,11 @@
         </nav>
 
 
+
         <main class="py-4 min-vh-100">
             @yield('content')
         </main>
+
 
 
 

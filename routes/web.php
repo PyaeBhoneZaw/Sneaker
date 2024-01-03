@@ -6,7 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ModelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoeController;
-
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index']);
@@ -41,15 +43,20 @@ Route::get('shoes/search', [ShoeController::class, 'search'])->name('shoes.searc
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 
+Route::put('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+
 Route::get('/cart/remove/{cartItemId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 
-Route::post('/shoes/checkout', [ShoeController::class, 'checkout'])->name('shoes.checkout');
+Route::get('/checkout', [OrderController::class, 'showCheckoutForm'])->name('checkout.form');
+Route::post('/checkout', [OrderController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/checkout/success', [OrderController::class, 'checkoutSuccess'])->name('checkout.success');
 
 
 Route::get('/shoes/delete/{id}', [ShoeController::class, 'delete']);
 Route::get('/shoes/brand/delete/{id}', [ShoeController::class, 'delete']);
 Route::get('/shoes/model/delete/{id}', [ShoeController::class, 'delete']);
+
 
 Auth::routes();

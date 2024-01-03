@@ -20,4 +20,12 @@ class Shoe extends Model
     {
         return $this->hasMany('App\Models\Cart');
     }
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order')->withPivot('size');
+    }
+    public function orderDetails()
+    {
+        return $this->hasMany('App\Models\OrderDetail');
+    }
 }
