@@ -23,7 +23,7 @@
             </div>
         @endif
         @if (session('info'))
-            <div class="alert alert-info" id="info">
+            <div class="alert alert-info text-center" id="info">
                 {{ session('info') }}
             </div>
             <script>
@@ -39,14 +39,18 @@
 
 
         <div class="row g-0">
-            <div class="col-md-6 col-sm-12 mb-3 mt-4" style="max-width: auto">
-                <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000" class="card-img">
+            <div class="col-md-5 col-sm-12 mb-3 mt-4" style="max-width: auto">
+                <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}" alt="{{ $shoe->shoe_name }}"
+                    class="card-img" style="height: 300px, width: 300px">
 
             </div>
+
+            <div class="col-md-1"></div>
+
             <div class="col-md-6 mb-3">
-                <div class="card-body mx-4 mb-5">
+                <div class="card-body mx-5 mb-5">
                     <h5 class="card-title mb-2">
-                        {{ $shoe->shoe_name }}
+                        <b>{{ $shoe->shoe_name }}</b>
                     </h5>
                     <p class="card-text">
                         <b>Brand:</b>
@@ -78,8 +82,6 @@
                         <button type="submit" class="btn btn-dark">Add to Cart</button>
                     </div>
                 </form>
-
-
             </div>
 
         </div>

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class ShoeController extends Controller
 {
 
+
     public function __construct()
     {
         $this->middleware('admin')->only(['add', 'create']);
@@ -45,12 +46,13 @@ class ShoeController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $validator = validator(request()->all(), [
+        $validator = validator($request->all(), [
             'shoe_name' => 'required',
             'model' => 'required',
             'price' => 'required',
+            'shoe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
         ]);
 
         if ($validator->fails()) {
@@ -58,13 +60,22 @@ class ShoeController extends Controller
         }
 
         $data = new Shoe;
-        $data->shoe_name = request()->shoe_name;
-        $data->shoe_model_id = request()->model;
-        $data->price = request()->price;
+        $data->shoe_name = $request->shoe_name;
+        $data->shoe_model_id = $request->model;
+        $data->price = $request->price;
+
+        if (request()->hasFile('shoe_image')) {
+            $originalName = request()->file('shoe_image')->getClientOriginalName();
+            $imgPath = request()->file('shoe_image')->storeAs('public/images/shoes', $originalName);
+            $data->shoe_image = $imgPath;
+        }
+
+        $data->size = json_encode([3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 14, 15, 16, 17, 18]);
         $data->save();
 
         return redirect('/shoes')->with('info', 'Shoe Added');
     }
+
 
     public function edit($id)
     {
@@ -106,31 +117,6 @@ class ShoeController extends Controller
             'shoe' => $data
         ]);
     }
-
-
-    // public function addToCart(Request $request, $id)
-    // {
-    //     if (Auth::check()) {
-    //         $validator = validator(request()->all(), [
-    //             'shoe_size' => 'required',
-    //         ]);
-
-    //         if ($validator->fails()) {
-    //             return back()->withErrors('Please Select Size');
-    //         }
-
-    //         $shoe = Shoe::find($id);
-    //         $selectedSize = $request->input('selected_size');
-
-    //         return view('cart', [
-    //             'shoe' => $shoe,
-    //             'selectedSize' => $selectedSize,
-    //         ]);
-    //     }
-    //     session(['previous_url' => url()->previous()]);
-
-    //     return redirect()->route('login');
-    // }
 
     public function search(Request $request)
     {

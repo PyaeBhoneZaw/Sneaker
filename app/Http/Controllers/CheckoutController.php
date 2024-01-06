@@ -10,7 +10,7 @@ use App\Models\Cart;
 use App\Models\Shoe;
 use Carbon\Carbon;
 
-class OrderController extends Controller
+class CheckoutController extends Controller
 {
     public function showCheckoutForm()
     {
@@ -25,8 +25,10 @@ class OrderController extends Controller
 
         if (Auth::check()) {
             $validator = validator(request()->all(), [
-                'customer_name' => 'required',
+                'firstName' => 'required',
+                'lastName' => 'required',
                 'email' => 'required',
+                'phone' => 'required',
                 'payment_type' => 'required',
             ]);
 
@@ -37,8 +39,10 @@ class OrderController extends Controller
 
             foreach ($cartItems as $cartItem) {
                 $data = new Order();
-                $data->customer_name = request()->customer_name;
+                $data->firstName = request()->firstName;
+                $data->lastName = request()->lastName;
                 $data->email = request()->email;
+                $data->phone = request()->phone;
                 $data->orderDate = Carbon::now();
                 $data->shoe_name = $cartItem->shoe_name;
                 $data->price = $cartItem->price;
@@ -47,11 +51,9 @@ class OrderController extends Controller
                 $data->save();
             }
 
-            // Fetch cart items for the user
             $cartItems = Cart::where('user_id', auth()->id())->get();
 
             foreach ($cartItems as $cartItem) {
-                // Create order detail for each cart item
 
                 OrderDetail::create([
                     'order_id' => $data->id,
@@ -63,14 +65,7 @@ class OrderController extends Controller
                 $cartItem->delete();
             }
 
-            // Redirect or show a success message
-            return redirect()->route('checkout.success')->with('success', 'Order placed successfully!');
+            return redirect()->route('home')->with('checkoutSuccess', true);
         }
-    }
-
-    public function checkoutSuccess()
-    {
-        // You can customize this view or redirect logic
-        return view('checkoutSuccess');
     }
 }

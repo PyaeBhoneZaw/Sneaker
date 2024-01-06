@@ -52,18 +52,14 @@
 
         <div class="row flex-wrap">
             @foreach ($shoes as $shoe)
-                @for ($i = 0; $i < 6; $i++)
-                @endfor
                 <div class="col-12 col-md-6 col-xl-3 p-3">
                     <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
                         <div class="card p-3">
                             <div class="card-body">
                                 <div class="row flex-wrap">
                                     <div class="col-6 col-md-12">
-                                        <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000"
-                                            class="card-img">
-                                    </div>
-                                    <div class="col-6 col-md-12 mt-lg-2">
+                                        <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}" <div
+                                            class="col-6 col-md-12 mt-lg-2">
                                         <div class="card-title"><b>Name: </b>{{ $shoe->shoe_name }}</div>
                                         <span class="card-text">
 
@@ -79,4 +75,36 @@
             @endforeach
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Checkout Success</h5>
+                </div>
+                <div class="modal-body text-center">
+                    Your order has been successfully processed.
+                    <br>
+                    Thank you for your purchase!
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('images/checkout_icon.png') }}" alt="checkoutlogo">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Check if the checkoutSuccess variable is set, then show the modal
+            @if (session('checkoutSuccess'))
+                $('#checkoutSuccessModal').modal('show');
+            @endif
+        });
+    </script>
 @endsection

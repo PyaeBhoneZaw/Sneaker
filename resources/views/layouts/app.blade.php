@@ -84,12 +84,12 @@
 
                     {{-- Search Bar --}}
 
-                    <div class="mx-auto">
+                    <div class="mx-auto w-50">
                         <form class="form-inline" method="GET" action="{{ route('shoes.search') }}">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search for brand or shoe"
                                     name="q" required>
-                                <button class="btn btn-outline-secondary" type="submit"><i
+                                <button class="btn btn-outline-dark" type="submit"><i
                                         class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
@@ -99,20 +99,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        {{-- <div class="nav-item m-3">
-                            @if (auth()->user()->cartItems()->count() > 0)
-                                <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
-                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
-                                    <span class="badge bg-danger">
-                                        {{ auth()->user()->cartItems()->count() }}
-                                    </span>
-                                </a>
-                            @else
-                                <a href="{{ route('cart.index') }}" class="text-dark text-decoration-none">
-                                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
-                                </a>
-                            @endif
-                        </div> --}}
                         @auth
                             @if (auth()->user()->cartItems())
                                 <div class="nav-item m-3">

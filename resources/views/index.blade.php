@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Shoes List</h1>
+        <h1>Explore Your Best</h1>
 
         @if (session('info'))
             <div class="alert alert-info" id="info">
@@ -14,17 +14,17 @@
             </script>
         @endif
 
-        <div class="row flex-wrap">
+        <div class="row flex-wrap mt-5">
             @foreach ($shoes as $shoe)
                 <div class="col-12 col-md-6 col-xl-3 p-3">
 
-                    <div class="card p-3">
+                    <div class="card p-3 h-100">
                         <div class="card-body">
                             <div class="row flex-wrap">
                                 <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
                                     <div class="col-12 col-md-12">
-                                        <img src="https://img.freepik.com/premium-vector/shoe-logo-design_639744-220.jpg?w=2000"
-                                            class="card-img">
+                                        <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}"
+                                            alt="{{ $shoe->shoe_name }}" class="card-img">
                                     </div>
                                 </a>
                                 <div class="col-12 col-md-12 mt-lg-2">

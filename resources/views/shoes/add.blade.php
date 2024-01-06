@@ -23,7 +23,7 @@
             </div>
         @endif
 
-        <form method="POST" class="m-3 card p-4" id="shoeForm">
+        <form method="POST" class="m-3 card p-4" id="shoeForm" enctype="multipart/form-data">
             @csrf
             <h1 class="mb-4">Add Shoes</h1>
 
@@ -58,9 +58,12 @@
                     aria-describedby="basic-addon1">
             </div>
 
+            <input type="file" name="shoe_image" class="form-control mb-3">
+
             <div class="text-lg-end text-md-end text-sm-center">
                 <input type="submit" value="Add Shoe" class="btn btn-outline-dark">
             </div>
+
         </form>
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

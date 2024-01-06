@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('shoe_name');
             $table->integer('shoe_model_id');
-            $table->string('size');
+            $table->string('size')->default(1);
+            $table->string('shoe_image')->nullable();
             $table->integer('price');
             $table->timestamps();
         });

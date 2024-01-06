@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="container">
+
+        @if (session('info'))
+            <div class="alert alert-info text-center" id="info">
+                {{ session('info') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
         <ol class="breadcrumb mx-2">
             <a class="breadcrumb-item active ms-1" href="{{ route('shoes') }}"><i
                     class="fa-solid fa-angle-left fa-2xl"></i></a>
@@ -26,27 +37,12 @@
                     @foreach ($cartItems as $cartItem)
                         <tr>
                             <td>
-                                <img src="{{ asset($cartItem->shoe->image_path) }}" alt="{{ $cartItem->shoe->shoe_name }}"
-                                    style="max-width: 100px; max-height: 100px;">
+                                <img src="{{ asset('storage/images/shoes/' . basename($cartItem->shoe->shoe_image)) }}"
+                                    alt="{{ $cartItem->shoe->shoe_name }}" style="max-width: 100px; max-height: 100px;">
                             </td>
                             <td>{{ $cartItem->shoe->shoe_name }}</td>
                             <td>{{ $cartItem->size }}</td>
-                            <td>
-                                <form action="{{ route('cart.update', ['id' => $cartItem->id]) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="input-group" style="width: 120px">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-dark" type="button" id="decreaseBtn">-</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" value="1"
-                                            id="quantityInput" name="quantity">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-dark" type="button" id="increaseBtn">+</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </td>
+                            <td>{{ $cartItem->quantity }}</td>
                             <td>${{ $cartItem->shoe->price }}</td>
                             <td>
                                 <a href="{{ route('cart.remove', $cartItem->id) }}" class="btn btn-outline-dark">Remove</a>
@@ -56,7 +52,9 @@
                 </tbody>
             </table>
 
+
             <div class="text-center">
+
                 <a href="{{ route('checkout.form') }}" class="btn btn-outline-dark">Checkout</a>
             </div>
         @endif
