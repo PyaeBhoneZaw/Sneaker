@@ -9,9 +9,9 @@ use App\Http\Controllers\ShoeController;
 use App\Http\Controllers\CheckoutController;
 use App\Models\Order;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/', [ShoeController::class, 'home'])->name('home');
+
 
 
 Route::get('/shoes', [ShoeController::class, 'index'])->name('shoes');

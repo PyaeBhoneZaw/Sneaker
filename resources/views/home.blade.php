@@ -47,23 +47,55 @@
     </div>
     {{-- End of Carousel --}}
 
-    <div class="container mt-5">
-        <h1 class=" text-md-center">Grab Your Best</h1>
+    <div class="container-fluid mt-5">
 
         <div class="row flex-wrap">
-            @foreach ($shoes as $shoe)
-                <div class="col-12 col-md-6 col-xl-3 p-3">
-                    <a class="btn" href="{{ url("/shoes/detail/$shoe->id") }}">
-                        <div class="card p-3">
+            {{-- Nike Brand --}}
+            <div class="h2 text-center text-capitalize "
+                style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                NIKE DUNKS</div>
+            @foreach ($nikeShoes as $nikeshoe)
+                <div class="col-12 col-md-6 col-xl-3 p-3 mb-5">
+                    <a class="btn p-0" href="{{ url("/shoes/detail/$nikeshoe->id") }}">
+                        <div class="card p-3" style="height:350px; width:350px">
                             <div class="card-body">
                                 <div class="row flex-wrap">
                                     <div class="col-6 col-md-12">
-                                        <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}" <div
-                                            class="col-6 col-md-12 mt-lg-2">
-                                        <div class="card-title"><b>Name: </b>{{ $shoe->shoe_name }}</div>
+                                        <img src="{{ asset('storage/images/shoes/' . basename($nikeshoe->shoe_image)) }}"
+                                            class="img-fluid mb-4" alt="Shoe Image">
+                                    </div>
+                                    <div class="col-6 col-md-12 mt-lg-2">
+                                        <div class="card-title"><b>Name: </b>{{ $nikeshoe->shoe_name }}</div>
                                         <span class="card-text">
+                                            <b> $ {{ $nikeshoe->price }} </b>
+                                            <br>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
 
-                                            <b> $ {{ $shoe->price }} </b>
+            {{-- Air Jordan Brand --}}
+            <div class="h2 text-center text-black mt-5"
+                style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
+                AIR JORDAN 4</div>
+            @foreach ($ajShoes as $ajshoes)
+                <div class="col-12 col-md-6 col-xl-3 p-3">
+                    <a class="btn p-0" href="{{ url("/shoes/detail/$ajshoes->id") }}">
+                        <div class="card p-3" style="height:350px; width:350px">
+                            <div class="card-body">
+                                <div class="row flex-wrap">
+                                    <div class="col-6 col-md-12">
+                                        <img src="{{ asset('storage/images/shoes/' . basename($ajshoes->shoe_image)) }}"
+                                            class="img-fluid mb-4" alt="Shoe Image">
+                                    </div>
+                                    <div class="col-6 col-md-12 mt-lg-2">
+                                        <div class="card-title"><b>Name: </b>{{ $ajshoes->shoe_name }}</div>
+                                        <span class="card-text">
+                                            <b> $ {{ $ajshoes->price }} </b>
                                             <br>
                                         </span>
                                     </div>
@@ -74,6 +106,7 @@
                 </div>
             @endforeach
         </div>
+
     </div>
     <!-- Modal -->
     <div class="modal fade" id="checkoutSuccessModal" tabindex="-1" role="dialog"

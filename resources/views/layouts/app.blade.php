@@ -177,29 +177,25 @@
             <!-- Grid container -->
             <div class="container p-4">
                 <!--Grid row-->
-                <div class="row mb-3">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem saepe fugiat possimus quisquam
-                        esse
-                        aliquam sapiente sunt commodi distinctio. Soluta quam quo modi unde eveniet neque aut at
-                        temporibus
-                        minus.</p>
+                <div class="d-flex justify-content-lg-between mb-3">
+                    <h3 class="text-uppercase">Sneaker hub</h3>
+                    <p class="text-end">Address: 50th Street, Downtown, Yangon<br>Email: sneakerhub@gmail.com<br>Phone:
+                        (+959)
+                        795590951</p>
                 </div>
+
                 <div class="row">
-
-
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                         <h4 class="mb-2">Help</h4>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#" class="text-white text-decoration-none">Contact</a>
+                                <a href="#" class="text-white text-decoration-none">Contact Us</a>
                             </li>
                             <li>
                                 <a href="#" class="text-white text-decoration-none">FAQ</a>
                             </li>
-                            <li>
-                                <a href="#" class="text-white text-decoration-none">Blah Blah</a>
-                            </li>
+
                         </ul>
 
                     </div>
@@ -207,17 +203,17 @@
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                        <h4 class="mb-2">Links</h4>
+                        <h4 class="mb-2">Brands</h4>
 
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#!" class="text-white text-decoration-none">List</a>
+                                <a href="#!" class="text-white text-decoration-none">Nike</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-white text-decoration-none">Upcoming</a>
+                                <a href="#!" class="text-white text-decoration-none">Air Jordan</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-white text-decoration-none">Most Popular</a>
+                                <a href="#!" class="text-white text-decoration-none">Adidas</a>
                             </li>
                         </ul>
                     </div>
@@ -227,7 +223,7 @@
                     <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                         <div class="d-flex flex-column text-lg-end">
                             <div class="ml-auto">
-                                <h3 class="text-uppercase">Sneaker hub</h3>
+
                                 <p class="text-white">© 2023 Copyright</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"

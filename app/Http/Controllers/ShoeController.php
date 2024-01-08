@@ -28,14 +28,6 @@ class ShoeController extends Controller
         return view('shoes.shoes_dashboard', ['shoes' => $data]);
     }
 
-    public function home()
-    {
-        $data = Shoe::orderBy('created_at', 'desc')->take(8)->get();
-        return view('home', [
-            'shoes' => $data
-        ]);
-    }
-
     public function add()
     {
         $brand = Brand::with('shoeModels')->get();
