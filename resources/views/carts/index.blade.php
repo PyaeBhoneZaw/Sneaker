@@ -20,41 +20,47 @@
         <h2 class="mb-5 text-center">My Cart</h2>
 
         @if ($cartItems->isEmpty())
-            <h3>Your cart is empty.</h3>
+            <h3 class="text-center">Your cart is empty.</h3>
         @else
-            <table class="table mb-5">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Shoe Name</th>
-                        <th>Size</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($cartItems as $cartItem)
-                        <tr>
-                            <td>
-                                <img src="{{ asset('storage/images/shoes/' . basename($cartItem->shoe->shoe_image)) }}"
-                                    alt="{{ $cartItem->shoe->shoe_name }}" style="max-width: 100px; max-height: 100px;">
-                            </td>
-                            <td>{{ $cartItem->shoe->shoe_name }}</td>
-                            <td>{{ $cartItem->size }}</td>
-                            <td>{{ $cartItem->quantity }}</td>
-                            <td>${{ $cartItem->shoe->price }}</td>
-                            <td>
-                                <a href="{{ route('cart.remove', $cartItem->id) }}" class="btn btn-outline-dark">Remove</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table mb-5">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Shoe Name</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($cartItems as $cartItem)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('storage/images/shoes/' . basename($cartItem->shoe->shoe_image)) }}"
+                                            alt="{{ $cartItem->shoe->shoe_name }}"
+                                            style="max-width: 100px; max-height: 100px;">
+                                    </td>
+                                    <td>{{ $cartItem->shoe->shoe_name }}</td>
+                                    <td>{{ $cartItem->size }}</td>
+                                    <td>{{ $cartItem->quantity }}</td>
+                                    <td>${{ $cartItem->shoe->price }}</td>
+                                    <td>
+                                        <a href="{{ route('cart.remove', $cartItem->id) }}"
+                                            class="btn btn-outline-dark">Remove</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 
 
             <div class="text-center">
-
                 <a href="{{ route('checkout.form') }}" class="btn btn-outline-dark">Checkout</a>
             </div>
         @endif

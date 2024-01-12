@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('shoes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->string('shoe_name');
             $table->integer('shoe_model_id');
             $table->string('size')->default(1);

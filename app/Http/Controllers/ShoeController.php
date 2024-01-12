@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Shoe;
 use App\Models\ShoeModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShoeController extends Controller
 {
@@ -41,17 +42,19 @@ class ShoeController extends Controller
     public function create(Request $request)
     {
         $validator = validator($request->all(), [
-            'shoe_name' => 'required',
+            'shoe_name' => ['required', 'unique:shoes'],
+            'brand' => 'required',
             'model' => 'required',
             'price' => 'required',
-            'shoe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+            'shoe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
+        $user_id = Auth::id();
 
         $data = new Shoe;
+        $data->user_id = $user_id;
         $data->shoe_name = $request->shoe_name;
         $data->shoe_model_id = $request->model;
         $data->price = $request->price;
@@ -112,14 +115,14 @@ class ShoeController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('q');
+        $query = $request->input('keyword');
 
         $shoes = Shoe::where('shoe_name', 'like', "%$query%")
             ->orWhereHas('shoeModel', function ($modelQuery) use ($query) {
-                $modelQuery->where('name', 'like', "%$query%");
+                $modelQuery->where('model_name', 'like', "%$query%");
             })
             ->orWhereHas('shoeModel.brand', function ($brandQuery) use ($query) {
-                $brandQuery->where('name', 'like', "%$query%");
+                $brandQuery->where('brand_name', 'like', "%$query%");
             })
             ->get();
 

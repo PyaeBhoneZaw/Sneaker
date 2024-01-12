@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Shoe;
 use App\Models\ShoeModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class ModelController extends Controller
     {
         $validator = validator(request()->all(), [
             'brand' => 'required',
-            'model_name' => 'required',
+            'model_name' => ['required', 'unique:shoe_models'],
         ]);
 
         if ($validator->fails()) {
@@ -31,7 +32,7 @@ class ModelController extends Controller
         }
 
         $data = new ShoeModel;
-        $data->name = request()->model_name;
+        $data->model_name = request()->model_name;
         $data->brand_id = request()->brand;
         $data->save();
 
@@ -41,7 +42,11 @@ class ModelController extends Controller
 
     public function delete($id)
     {
+        $shoe = Shoe::find($id);
         $model = ShoeModel::find($id);
+        if ($shoe) {
+            return back()->withErrors('There is a related shoe. Cannot Delete');
+        }
         $model->delete();
         return back()->with('info', 'Model Deleted');
     }

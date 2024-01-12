@@ -17,7 +17,7 @@ class BrandFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => ucwords($this->faker->word)
+            "brand_name" => ucwords($this->faker->word)
         ];
     }
 }

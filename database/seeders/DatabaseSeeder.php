@@ -28,25 +28,25 @@ class DatabaseSeeder extends Seeder
 
 
         $brands = [
-            ['name' => 'Nike'],
-            ['name' => 'Adidas'],
-            ['name' => 'Air Jordan'],
-            ['name' => 'Vans'],
+            ['brand_name' => 'Nike'],
+            ['brand_name' => 'Adidas'],
+            ['brand_name' => 'Air Jordan'],
+            ['brand_name' => 'Vans'],
         ];
         foreach ($brands as $brand) {
             Brand::factory()->create($brand);
         }
 
         $models = [
-            ['name' => 'Dunk Low', 'brand_id' => 1],
-            ['name' => 'Dunk High', 'brand_id' => 1],
-            ['name' => 'Air Force 1', 'brand_id' => 1],
-            ['name' => 'Air Jordan 1 Low', 'brand_id' => 3],
-            ['name' => 'Air Jordan 1 High', 'brand_id' => 3],
-            ['name' => 'Air Jordan 1 Mid', 'brand_id' => 3],
-            ['name' => 'Air Jordan 4', 'brand_id' => 3],
-            ['name' => 'Forum Low', 'brand_id' => 2],
-            ['name' => 'Knu Skool', 'brand_id' => 4],
+            ['model_name' => 'Dunk Low', 'brand_id' => 1],
+            ['model_name' => 'Dunk High', 'brand_id' => 1],
+            ['model_name' => 'Air Force 1', 'brand_id' => 1],
+            ['model_name' => 'Air Jordan 1 Low', 'brand_id' => 3],
+            ['model_name' => 'Air Jordan 1 High', 'brand_id' => 3],
+            ['model_name' => 'Air Jordan 1 Mid', 'brand_id' => 3],
+            ['model_name' => 'Air Jordan 4', 'brand_id' => 3],
+            ['model_name' => 'Forum Low', 'brand_id' => 2],
+            ['model_name' => 'Knu Skool', 'brand_id' => 4],
         ];
         foreach ($models as $model) {
             ShoeModel::factory()->create($model);

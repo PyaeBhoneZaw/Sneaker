@@ -38,7 +38,7 @@ class CartController extends Controller
             $data->user_id = $user_id;
             $data->shoe_id = $shoe->id;
             $data->shoe_name = $shoe->shoe_name;
-            $data->shoe_model = $shoe->shoeModel->name;
+            $data->shoe_model = $shoe->shoeModel->model_name;
             $data->size = $selectedSize;
             $data->price = $shoe->price;
             $data->save();

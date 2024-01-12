@@ -5,7 +5,7 @@
         <h2>Model Dashboard</h2>
 
         @if (session('info'))
-            <div class="alert alert-info" id="info">
+            <div class="alert alert-info text-center" id="info">
                 {{ session('info') }}
             </div>
             <script>
@@ -14,6 +14,19 @@
                 }, 3000);
             </script>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger text-center" id="info">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
+
 
         <table class="table table-bordered mt-4">
             <thead>
@@ -27,7 +40,7 @@
                 @foreach ($models as $model)
                     <tr>
                         <td>{{ $model->id }}</td>
-                        <td>{{ $model->name }}</td>
+                        <td>{{ $model->model_name }}</td>
                         <td class="text-end">
                             <a href="{{ url("/shoes/model/delete/$model->id") }}" class="btn btn-outline-danger ">Delete</a>
                         </td>

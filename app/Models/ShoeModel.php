@@ -16,6 +16,6 @@ class ShoeModel extends Model
 
     public function shoes()
     {
-        return $this->hasMany(Shoe::class);
+        return $this->hasMany('App\Models\Shoes');
     }
 }

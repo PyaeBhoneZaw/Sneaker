@@ -39,36 +39,33 @@
 
 
         <div class="row g-0">
-            <div class="col-md-5 col-sm-12 mb-3 mt-4" style="max-width: auto">
+            <div class="col-md-5 col-sm-12 mb-3 mt-2" style="max-width: auto">
                 <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}" alt="{{ $shoe->shoe_name }}"
                     class="card-img" style="height: 300px, width: 300px">
-
             </div>
 
             <div class="col-md-1"></div>
 
-            <div class="col-md-6 mb-3">
-                <div class="card-body mx-5 mb-5">
-                    <h5 class="card-title mb-2">
+            <div class="col-md-6">
+                <div class="card-body mx-5">
+                    <h2 class="card-title">
                         <b>{{ $shoe->shoe_name }}</b>
-                    </h5>
-                    <p class="card-text">
-                        <b>Brand:</b>
-                        {{ $shoe->shoeModel->brand->name }}
+                    </h2>
+                    <p class="card-text fw-semibold h4 mt-3">
+                        {{ $shoe->shoeModel->brand->brand_name }} / {{ $shoe->shoeModel->model_name }}
                     </p>
-                    <p class="card-text">
-                        <b>Model:</b>
-                        {{ $shoe->shoeModel->name }}
+                    <p class="card-text fw-semibold h4 mt-4">
+                        <b>US$ :{{ $shoe->price }}</b>
                     </p>
-                    <p class="card-text">
-                        $ <b> {{ $shoe->price }}</b>
-                    </p>
+                    <hr>
                 </div>
+
 
                 <form method="POST" action="{{ route('cart.addToCart', $shoe->id) }}">
                     @csrf
+                    <label for="select_size" class="mx-5 h4">Choose Size</label>
                     <input type="hidden" name="selected_size" id="selected_size" value="">
-                    <div class="mx-4">
+                    <div class="mx-5">
                         @foreach (json_decode($shoe->size) as $size)
                             <input type="radio" class="btn-check m-2" name="shoe_size" id="size_{{ $size }}"
                                 value="{{ $size }}" autocomplete="off"

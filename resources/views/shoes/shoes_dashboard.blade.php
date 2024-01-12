@@ -5,8 +5,20 @@
         <h2>Shoes Dashboard</h2>
 
         @if (session('info'))
-            <div class="alert alert-info" id="info">
+            <div class="alert alert-info text-center" id="info">
                 {{ session('info') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger text-center" id="info">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
             </div>
             <script>
                 setTimeout(function() {
@@ -17,7 +29,7 @@
 
         <table class="table table-bordered mt-4">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>ID</th>
                     <th>Name</th>
                     <th>Brand</th>
@@ -28,11 +40,11 @@
             </thead>
             <tbody>
                 @foreach ($shoes as $shoe)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ $shoe->id }}</td>
                         <td>{{ $shoe->shoe_name }}</td>
-                        <td>{{ $shoe->shoeModel->brand->name }}</td>
-                        <td>{{ $shoe->shoeModel->name }}</td>
+                        <td>{{ $shoe->shoeModel->brand->brand_name }}</td>
+                        <td>{{ $shoe->shoeModel->model_name }}</td>
                         <td>${{ $shoe->price }}</td>
                         <td>
                             <a href="{{ url("/shoes/detail/$shoe->id") }}" class="btn btn-outline-dark">View</a>

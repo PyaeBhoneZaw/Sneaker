@@ -33,7 +33,7 @@
                     <option value="" selected disabled>Select a Brand</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand['id'] }}">
-                            {{ $brand->name }}
+                            {{ $brand->brand_name }}
                         </option>
                     @endforeach
                 </select>

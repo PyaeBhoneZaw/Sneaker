@@ -36,13 +36,15 @@ class CheckoutController extends Controller
                 return back()->withErrors('Please Fill Information');
             }
             $cartItems = Cart::where('user_id', auth()->id())->get();
-
+            $user_id = Auth::id();
             foreach ($cartItems as $cartItem) {
                 $data = new Order();
+                $data->user_id = $user_id;
                 $data->firstName = request()->firstName;
                 $data->lastName = request()->lastName;
                 $data->email = request()->email;
                 $data->phone = request()->phone;
+                $data->address = request()->address;
                 $data->orderDate = Carbon::now();
                 $data->shoe_name = $cartItem->shoe_name;
                 $data->price = $cartItem->price;
@@ -64,8 +66,8 @@ class CheckoutController extends Controller
 
                 $cartItem->delete();
             }
-
-            return redirect()->route('home')->with('checkoutSuccess', true);
+            session()->flash('success', 'Your order has been successfully processed.');
+            return redirect()->route('home');
         }
     }
 }

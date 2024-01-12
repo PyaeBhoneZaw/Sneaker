@@ -87,8 +87,8 @@
                     <div class="mx-auto w-50">
                         <form class="form-inline" method="GET" action="{{ route('shoes.search') }}">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for brand or shoe"
-                                    name="q" required>
+                                <input type="text" class="form-control" placeholder="Search for brand or Shoename..."
+                                    name="keyword" required>
                                 <button class="btn btn-outline-dark" type="submit"><i
                                         class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
@@ -99,6 +99,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
                         @auth
                             @if (auth()->user()->cartItems())
                                 <div class="nav-item m-3">
@@ -125,7 +126,9 @@
                                 </a>
                             </div>
                         @endauth
-
+                        <li class="nav-item m-2">
+                            <a href="#" class="nav-link">{{ __('About') }}</a>
+                        </li>
 
 
 
@@ -177,11 +180,14 @@
             <!-- Grid container -->
             <div class="container p-4">
                 <!--Grid row-->
-                <div class="d-flex justify-content-lg-between mb-3">
-                    <h3 class="text-uppercase">Sneaker hub</h3>
-                    <p class="text-end">Address: 50th Street, Downtown, Yangon<br>Email: sneakerhub@gmail.com<br>Phone:
-                        (+959)
-                        795590951</p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 text-sm-center text-lg-start">
+                        <h3 class="text-uppercase">Sneaker hub</h3>
+                    </div>
+                    <div class="col-lg-6 col-md-12 text-sm-center text-lg-start text-lg-end mb-5">
+                        <h5>Your Style, Your Choice<br>Dive into Sneaker Heaven.
+                        </h5>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -190,7 +196,8 @@
                         <h4 class="mb-2">Help</h4>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#" class="text-white text-decoration-none">Contact Us</a>
+                                <a href="{{ route('contacts.create') }}"
+                                    class="text-white text-decoration-none">Contact Us</a>
                             </li>
                             <li>
                                 <a href="#" class="text-white text-decoration-none">FAQ</a>
@@ -223,12 +230,9 @@
                     <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                         <div class="d-flex flex-column text-lg-end">
                             <div class="ml-auto">
-
-                                <p class="text-white">© 2023 Copyright</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"
                                         class="mx-2">
-                                        <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                         <style>
                                             svg {
                                                 fill: #989ea4
@@ -262,6 +266,7 @@
                                             d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
                                     </svg>
                                 </div>
+                                <p class="text-white mt-4">© 2023 Copyright</p>
                             </div>
                         </div>
                     </div>

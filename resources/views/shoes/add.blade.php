@@ -37,7 +37,7 @@
                     <option value="" selected disabled>Select a Brand</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->id }}" data-models="{{ json_encode($brand->shoeModels) }}">
-                            {{ $brand->name }}
+                            {{ $brand->brand_name }}
                         </option>
                     @endforeach
                 </select>
@@ -45,6 +45,7 @@
 
             {{-- Models --}}
             <div class="mb-3" id="modelsInput" style="display: none;">
+                <label for="model" class=" text-muted mx-2">Choose Model</label>
                 <select name="model" id="model" class="form-select">
                     <!-- Models will be dynamically populated here -->
                 </select>
@@ -77,7 +78,7 @@
 
                     if (Array.isArray(models)) {
                         $.each(models, function(index, model) {
-                            $('#model').append('<option value="' + model.id + '">' + model.name +
+                            $('#model').append('<option value="' + model.id + '">' + model.model_name +
                                 '</option>');
                         });
 
