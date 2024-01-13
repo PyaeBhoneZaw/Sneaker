@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Order;
 use App\Models\Shoe;
 use App\Models\ShoeModel;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class ShoeController extends Controller
         $model = ShoeModel::all();
         return view('shoes.add', [
             'brands' => $brand,
-            'models' => $model
+            'models' => $model,
         ]);
     }
 

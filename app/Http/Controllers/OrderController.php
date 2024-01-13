@@ -10,7 +10,7 @@ use App\Models\Cart;
 use App\Models\Shoe;
 use Carbon\Carbon;
 
-class CheckoutController extends Controller
+class OrderController extends Controller
 {
     public function showCheckoutForm()
     {
@@ -33,7 +33,7 @@ class CheckoutController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return back()->withErrors('Please Fill Information');
+                return back()->withErrors($validator);
             }
             $cartItems = Cart::where('user_id', auth()->id())->get();
             $user_id = Auth::id();
@@ -45,7 +45,7 @@ class CheckoutController extends Controller
                 $data->email = request()->email;
                 $data->phone = request()->phone;
                 $data->address = request()->address;
-                $data->orderDate = Carbon::now();
+                $data->orderDate = Carbon::now()->format('F j, Y');
                 $data->shoe_name = $cartItem->shoe_name;
                 $data->price = $cartItem->price;
                 $data->quantity = $cartItem->quantity;
@@ -69,5 +69,16 @@ class CheckoutController extends Controller
             session()->flash('success', 'Your order has been successfully processed.');
             return redirect()->route('home');
         }
+    }
+    public function dashboard()
+    {
+        $data = Order::all();
+        return view('order_dashboard', ['orders' => $data]);
+    }
+    public function delete($id)
+    {
+        $data = Order::find($id);
+        $data->delete();
+        return back()->with('info', 'Order Deleted');
     }
 }

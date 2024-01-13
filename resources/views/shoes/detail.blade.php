@@ -4,9 +4,7 @@
     <style>
         .size-btn {
             width: 50px;
-            /* Set your desired width */
             height: 50px;
-            /* Set your desired height */
             text-align: center;
             line-height: 35px;
             border-radius: 30px
@@ -14,13 +12,18 @@
     </style>
     <div class="container">
         @if ($errors->any())
-            <div class="alert alert-danger text-center">
+            <div class="alert alert-danger text-center" id="info">
                 <ul class="my-auto">
                     @foreach ($errors->all() as $error)
                         {{ $error }}
                     @endforeach
                 </ul>
             </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
         @endif
         @if (session('info'))
             <div class="alert alert-info text-center" id="info">
@@ -57,9 +60,11 @@
                     <p class="card-text fw-semibold h4 mt-4">
                         <b>US$ :{{ $shoe->price }}</b>
                     </p>
+                    {{-- <p class="card-text fw-semibold h4 mt-4">
+                        <b>Orders Count: {{ $shoe->orderDetails()->count() }}</b>
+                    </p> --}}
                     <hr>
                 </div>
-
 
                 <form method="POST" action="{{ route('cart.addToCart', $shoe->id) }}">
                     @csrf

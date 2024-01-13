@@ -2,6 +2,20 @@
 
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger text-center" id="info">
+                <ul class="my-auto">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                </ul>
+            </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-4 mx-5 text-center">Order Information</h2>
@@ -33,34 +47,34 @@
                         <label for="phone" class="form-label">Address</label>
                         <textarea rows="3" class="form-control" id="address" name="address" required></textarea>
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label">Choose Payment Type</label>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-outline-dark payment-option" data-value="cash">
-                                <img src="{{ asset('images/icons8-cash-48.png') }}" alt="Cash">
+                        <label class="form-label d-block">Choose Payment Type</label>
+                        <div class="d-flex flex-wrap">
+                            <button type="button" class="btn btn-outline-dark payment-option mb-2" data-value="cash">
+                                <img src="{{ asset('images/icons8-cash-48.png') }}" alt="Cash" class="img-fluid">
                                 Cash
                             </button>
-                            <button type="button" class="btn btn-outline-dark payment-option" data-value="credit_card">
-                                <img src="{{ asset('images/icons8-credit-card-48.png') }}" alt="Credit Card">
+                            <button type="button" class="btn btn-outline-dark payment-option mb-2"
+                                data-value="credit_card">
+                                <img src="{{ asset('images/icons8-credit-card-48.png') }}" alt="Credit Card"
+                                    class="img-fluid">
                                 Credit Card
                             </button>
-                            <button type="button" class="btn btn-outline-dark payment-option" data-value="paypal">
-                                <img src="{{ asset('images/icons8-paypal-48.png') }}" alt="PayPal">
+                            <button type="button" class="btn btn-outline-dark payment-option mb-2" data-value="paypal">
+                                <img src="{{ asset('images/icons8-paypal-48.png') }}" alt="PayPal" class="img-fluid">
                                 PayPal
                             </button>
-                            <button type="button" class="btn btn-outline-dark payment-option" data-value="visa">
-                                <img src="{{ asset('images/icons8-visa-48.png') }}" alt="Visa">
+                            <button type="button" class="btn btn-outline-dark payment-option mb-2" data-value="visa">
+                                <img src="{{ asset('images/icons8-visa-48.png') }}" alt="Visa" class="img-fluid">
                                 Visa
                             </button>
                         </div>
                         <input type="hidden" name="payment_type" id="payment_type" value="" required>
                     </div>
                     <div class="text-lg-center text-md-end text-sm-center">
-                        <input type="submit" value="Order" class="btn btn-outline-dark w-25" data-toggle="modal"
+                        <input type="submit" value="Order" class="btn btn-outline-dark w-100" data-toggle="modal"
                             data-target="#PopupInfo">
                     </div>
-
                 </form>
             </div>
 

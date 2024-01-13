@@ -75,6 +75,12 @@
                                     <a class="dropdown-item mb-1" href="{{ route('shoe_models.model_dashboard') }}">
                                         {{ __('Manage Model') }}
                                     </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('orders.order_dashboard') }}">
+                                        {{ __('Order Report') }}
+                                    </a>
+                                    <a class="dropdown-item mb-1" href="{{ route('contacts.contact_dashboard') }}">
+                                        {{ __('Contact List') }}
+                                    </a>
                                 </div>
                             </li>
                         @else
@@ -87,7 +93,7 @@
                     <div class="mx-auto w-50">
                         <form class="form-inline" method="GET" action="{{ route('shoes.search') }}">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for brand or Shoename..."
+                                <input type="text" class="form-control" placeholder="Search for brand or shoename..."
                                     name="keyword" required>
                                 <button class="btn btn-outline-dark" type="submit"><i
                                         class="fa-solid fa-magnifying-glass"></i></button>
@@ -210,7 +216,7 @@
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                        <h4 class="mb-2">Brands</h4>
+                        <h4 class="mb-2">Popular Brands</h4>
 
                         <ul class="list-unstyled">
                             <li>

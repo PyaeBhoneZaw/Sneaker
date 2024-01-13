@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         @if (session('info'))
-            <div class="alert alert-info" id="info">
+            <div class="alert alert-info text-center" id="info">
                 {{ session('info') }}
             </div>
             <script>
@@ -17,7 +17,7 @@
             @foreach ($shoes as $shoe)
                 <div class="col-12 col-md-6 col-sm-12 col-xl-3">
                     <a class="btn p-0" href="{{ url("/shoes/detail/$shoe->id") }}">
-                        <div class="card p-1" style="height: 350px;">
+                        <div class="card p-1 mb-5" style="height: 350px;">
                             <div class="card-body">
                                 <div class="row flex-wrap">
                                     <div class="col-12 col-md-12">

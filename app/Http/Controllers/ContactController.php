@@ -43,10 +43,17 @@ class ContactController extends Controller
         }
         return redirect()->route('login');
     }
+    public function dashboard()
+    {
+        $contacts = Contact::latest()->get();
+
+        return view('contacts.contact_dashboard', compact('contacts'));
+    }
 
     public function delete($id)
     {
         $contact = Contact::find($id);
-        $contact->delete()->with('info', 'Contact Deleted');
+        $contact->delete();
+        return back()->with('info', 'Contact Deleted');
     }
 }
