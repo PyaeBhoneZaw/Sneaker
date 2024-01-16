@@ -38,6 +38,8 @@ class OrderController extends Controller
             $cartItems = Cart::where('user_id', auth()->id())->get();
             $user_id = Auth::id();
             foreach ($cartItems as $cartItem) {
+                $shoe = Shoe::find($cartItem->shoe_id);
+
                 $data = new Order();
                 $data->user_id = $user_id;
                 $data->firstName = request()->firstName;
@@ -49,6 +51,7 @@ class OrderController extends Controller
                 $data->shoe_name = $cartItem->shoe_name;
                 $data->price = $cartItem->price;
                 $data->quantity = $cartItem->quantity;
+                $shoe->decrement('stock_quantity', $cartItem->quantity);
                 $data->payment_type = request()->payment_type;
                 $data->save();
             }

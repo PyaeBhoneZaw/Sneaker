@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -62,6 +63,10 @@ Route::get('/shoes/brand/delete/{id}', [BrandController::class, 'delete']);
 Route::get('/shoes/model/delete/{id}', [ModelController::class, 'delete']);
 Route::get('/order/delete/{id}', [OrderController::class, 'delete']);
 Route::get('/contacts/delete/{id}', [ContactController::class, 'delete']);
+
+
+//About page
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
 Auth::routes();

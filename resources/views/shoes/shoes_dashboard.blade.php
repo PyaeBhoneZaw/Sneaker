@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Shoes Dashboard</h2>
+    <div class="container-fluid">
+        <h2 class="text-center">Shoes Dashboard</h2>
 
         @if (session('info'))
             <div class="alert alert-info text-center" id="info">
@@ -37,6 +37,7 @@
                         <th>Brand</th>
                         <th>Model</th>
                         <th>Price</th>
+                        <th>Stock Quantity</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -48,6 +49,7 @@
                             <td>{{ $shoe->shoeModel->brand->brand_name }}</td>
                             <td>{{ $shoe->shoeModel->model_name }}</td>
                             <td>${{ $shoe->price }}</td>
+                            <td>{{ $shoe->stock_quantity }}</td>
                             <td>
                                 <a href="{{ url("/shoes/detail/$shoe->id") }}" class="btn btn-outline-dark">View</a>
                                 <button type="button" class="btn btn-outline-dark mb-0 w-25" data-bs-toggle="modal"

@@ -58,6 +58,7 @@ class ShoeController extends Controller
         $data->user_id = $user_id;
         $data->shoe_name = $request->shoe_name;
         $data->shoe_model_id = $request->model;
+        $data->stock_quantity = $request->quantity;
         $data->price = $request->price;
 
         if (request()->hasFile('shoe_image')) {

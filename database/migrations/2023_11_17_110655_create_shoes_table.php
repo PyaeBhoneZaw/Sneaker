@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('size')->default(1);
             $table->string('shoe_image')->nullable();
             $table->integer('price');
+            $table->integer('stock_quantity');
             $table->timestamps();
         });
     }

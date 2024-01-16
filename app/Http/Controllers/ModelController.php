@@ -43,8 +43,9 @@ class ModelController extends Controller
     public function delete($id)
     {
         $shoe = Shoe::find($id);
+        $brand = Brand::find($id);
         $model = ShoeModel::find($id);
-        if ($shoe) {
+        if ($brand) {
             return back()->withErrors('There is a related shoe. Cannot Delete');
         }
         $model->delete();

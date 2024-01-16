@@ -14,13 +14,18 @@
             </script>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" id="info">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('info').style.display = 'none';
+                }, 3000);
+            </script>
         @endif
 
         <form method="POST" class="m-3 card p-4" id="shoeForm" enctype="multipart/form-data">
@@ -49,6 +54,11 @@
                 <select name="model" id="model" class="form-select">
                     <!-- Models will be dynamically populated here -->
                 </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="number" name="quantity" class="form-control" placeholder="Quantity" aria-label="quantity"
+                    aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">

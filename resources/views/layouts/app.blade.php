@@ -133,7 +133,7 @@
                             </div>
                         @endauth
                         <li class="nav-item m-2">
-                            <a href="#" class="nav-link">{{ __('About') }}</a>
+                            <a href="{{ route('about.index') }}" class="nav-link">{{ __('About') }}</a>
                         </li>
 
 
