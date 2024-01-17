@@ -39,9 +39,15 @@
             <a class="breadcrumb-item active ms-1" href="{{ url()->previous() }}"><i
                     class="fa-solid fa-angle-left fa-2xl"></i></a>
         </ol>
+        @if ($shoe->stock_quantity <= 0)
+            <div class="alert alert-danger text-center">
+                Out of Stock!
+            </div>
+        @endif
 
 
         <div class="row g-0">
+
             <div class="col-md-5 col-sm-12 mb-3 mt-2" style="max-width: auto">
                 <img src="{{ asset('storage/images/shoes/' . basename($shoe->shoe_image)) }}" alt="{{ $shoe->shoe_name }}"
                     class="card-img" style="height: 300px, width: 300px">
@@ -58,11 +64,8 @@
                         {{ $shoe->shoeModel->brand->brand_name }} / {{ $shoe->shoeModel->model_name }}
                     </p>
                     <p class="card-text fw-semibold h4 mt-4">
-                        <b>US$ :{{ $shoe->price }}</b>
+                        <b>$ :{{ $shoe->price }}</b>
                     </p>
-                    {{-- <p class="card-text fw-semibold h4 mt-4">
-                        <b>Orders Count: {{ $shoe->orderDetails()->count() }}</b>
-                    </p> --}}
                     <hr>
                 </div>
 
@@ -80,9 +83,18 @@
                         @endforeach
                     </div>
 
-                    <div class="m-5 text-end">
-                        <button type="submit" class="btn btn-dark">Add to Cart</button>
-                    </div>
+
+                    @if ($shoe->stock_quantity == 0)
+                        <div class="m-5 text-end">
+                            <button type="submit" class="btn btn-dark" disabled>Add to Cart</button>
+                        </div>
+                    @else
+                        <div class="m-5 text-end">
+                            <button type="submit" class="btn btn-dark">Add to Cart</button>
+                        </div>
+                    @endif
+
+
                 </form>
             </div>
 
