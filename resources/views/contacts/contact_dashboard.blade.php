@@ -26,7 +26,7 @@
         @endif
         <h2 class="text-center mb-5">Contact Messages</h2>
         @if ($contacts->isEmpty())
-            <h3 class="text-center mt-4">There is no Contact.</h3>
+            <h3 class="text-center mt-4">There is no Contact Received.</h3>
         @else
             <div class="row row-cols-1 row-cols-md-4 g-4">
 

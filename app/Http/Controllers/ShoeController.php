@@ -77,7 +77,7 @@ class ShoeController extends Controller
     public function edit($id)
     {
         $data = Shoe::find($id);
-        return view('/shoes', compact('shoe'));
+        return redirect('/shoes.shoe_dashboard');
     }
 
     public function update($id)
@@ -96,7 +96,7 @@ class ShoeController extends Controller
         $data->price = request()->price;
         $data->save();
 
-        return redirect('/shoes')->with('info', 'Shoe Updated');
+        return redirect()->route('shoes.shoe_dashboard')->with('info', 'Shoe Updated');
     }
 
     public function delete($id)
