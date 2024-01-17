@@ -64,7 +64,7 @@
                         {{ $shoe->shoeModel->brand->brand_name }} / {{ $shoe->shoeModel->model_name }}
                     </p>
                     <p class="card-text fw-semibold h4 mt-4">
-                        <b>$ :{{ $shoe->price }}</b>
+                        <b>$ {{ $shoe->price }}</b>
                     </p>
                     <hr>
                 </div>

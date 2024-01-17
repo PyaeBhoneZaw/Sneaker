@@ -83,7 +83,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
-                                <a href="{{ url("/shoes/delete/$order->id") }}" class="btn btn-outline-danger">Delete</a>
+                                <a href="{{ url("/order/delete/$order->id") }}" class="btn btn-outline-danger">Delete</a>
                             </div>
                         </div>
                     </div>

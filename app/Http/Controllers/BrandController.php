@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Shoe;
+use App\Models\ShoeModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
 
@@ -32,16 +34,28 @@ class BrandController extends Controller
         return redirect('/brands/add')->with('info', 'Brand Added');
     }
 
+
     public function delete($id)
     {
-        $shoe = Shoe::find($id);
-        $brand = Brand::find($id);
-        if ($shoe) {
-            return back()->withErrors('There is a related shoe. Cannot Delete');
+        $shoes = Shoe::whereHas('shoeModel', function ($query) use ($id) {
+            $query->where('brand_id', $id);
+        })->get();
+
+        if ($shoes->isNotEmpty()) {
+            return back()->withErrors('There are related shoes. Cannot Delete');
         }
-        $brand->delete();
-        return back()->with('info', 'Brand Deleted');
+
+        $brand = Brand::find($id);
+
+        if ($brand) {
+            $brand->delete();
+            return back()->with('info', 'Brand Deleted');
+        } else {
+            return back()->withErrors('Brand not found');
+        }
     }
+
+
     public function dashboard()
     {
         $data = Brand::all();

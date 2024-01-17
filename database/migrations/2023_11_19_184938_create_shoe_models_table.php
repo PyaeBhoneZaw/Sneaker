@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shoe_models', function (Blueprint $table) {
             $table->id();
             $table->string('model_name');
-            $table->integer('brand_id');
+            $table->integer('brand_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

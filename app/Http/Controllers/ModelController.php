@@ -42,15 +42,17 @@ class ModelController extends Controller
 
     public function delete($id)
     {
-        $shoe = Shoe::find($id);
-        $brand = Brand::find($id);
-        $model = ShoeModel::find($id);
+        $shoeModel = ShoeModel::find($id);
+        $brand = $shoeModel->brand;
+
         if ($brand) {
-            return back()->withErrors('There is a related shoe. Cannot Delete');
+            return back()->withErrors('There is a related brand. Cannot Delete');
         }
-        $model->delete();
+
+        $shoeModel->delete();
         return back()->with('info', 'Model Deleted');
     }
+
     public function dashboard()
     {
         $data = ShoeModel::all();
