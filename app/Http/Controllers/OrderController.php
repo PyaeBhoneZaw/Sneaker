@@ -75,7 +75,7 @@ class OrderController extends Controller
     }
     public function dashboard()
     {
-        $data = Order::all();
+        $data = Order::latest()->paginate(12);
         return view('order_dashboard', ['orders' => $data]);
     }
     public function delete($id)

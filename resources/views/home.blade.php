@@ -39,7 +39,7 @@
             @foreach ($nikeShoes as $nikeshoe)
                 <div class="col-12 col-md-6 col-xl-3 p-3 mb-5">
                     <a class="btn p-0" href="{{ url("/shoes/detail/$nikeshoe->id") }}">
-                        <div class="card p-3">
+                        <div class="card p-3" style="height: 370px">
                             <div class="card-body">
                                 <div class="row flex-wrap">
                                     <div class="col-6 col-md-12">
