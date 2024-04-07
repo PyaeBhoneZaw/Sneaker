@@ -205,9 +205,6 @@
                                 <a href="{{ route('contacts.create') }}"
                                     class="text-white text-decoration-none">Contact Us</a>
                             </li>
-                            <li>
-                                <a href="#" class="text-white text-decoration-none">FAQ</a>
-                            </li>
 
                         </ul>
 

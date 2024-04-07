@@ -36,7 +36,7 @@ class ModelController extends Controller
         $data->brand_id = request()->brand;
         $data->save();
 
-        return redirect('/brands/add')->with('info', 'Brand Added');
+        return back()->with('info', 'Model Added');
     }
 
 

@@ -29,7 +29,7 @@
         @if ($shoes->isEmpty())
             <h3 class="text-center mt-4">There is no Shoe.</h3>
         @else
-            <table class="table table-bordered mt-4">
+            <table class="table table-responsive-sm table-bordered mt-4">
                 <thead>
                     <tr class="text-center">
                         <th>ID</th>

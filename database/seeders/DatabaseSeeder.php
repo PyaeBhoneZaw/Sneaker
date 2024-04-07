@@ -18,8 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Shoe::factory()->count(20)->create();
-
         User::factory()->create([
             "name" => "Pyae Bhone",
             "role" => "admin",

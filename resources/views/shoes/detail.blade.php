@@ -68,17 +68,48 @@
                     </p>
                     <hr>
                 </div>
+                {{-- Accordian --}}
+                <div class="accordion accordion-flush mx-4" id="accordionFlush">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Product Description
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
+                                body.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Product Details
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
+                                body. Let's imagine this being filled with some actual content.</div>
+                        </div>
+                    </div>
+
+                </div>
 
                 <form method="POST" action="{{ route('cart.addToCart', $shoe->id) }}">
                     @csrf
-                    <label for="select_size" class="mx-5 h4">Choose Size</label>
+
+                    <label for="select_size" class="mx-5 h4 mt-5">Choose Size</label>
                     <input type="hidden" name="selected_size" id="selected_size" value="">
                     <div class="mx-5">
                         @foreach (json_decode($shoe->size) as $size)
                             <input type="radio" class="btn-check m-2" name="shoe_size" id="size_{{ $size }}"
                                 value="{{ $size }}" autocomplete="off"
                                 onclick="setSelectedSize('{{ $size }}')">
-                            <label class="btn btn-outline-dark m-2 size-btn"
+                            <label class="btn btn-outline-dark m-2 size-btn p-2"
                                 for="size_{{ $size }}">{{ $size }}</label>
                         @endforeach
                     </div>
@@ -93,9 +124,8 @@
                             <button type="submit" class="btn btn-dark">Add to Cart</button>
                         </div>
                     @endif
-
-
                 </form>
+
             </div>
 
         </div>
