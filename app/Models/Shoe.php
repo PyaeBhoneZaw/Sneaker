@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Shoe extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'shoe_name',
+        'price',
+        'stock_quantity',
+        'shoe_image',
+        'sizes',
+        'shoe_model_id'
+    ];
+
+    protected $casts = [
+        'sizes' => 'array',
+        'price' => 'decimal:2'
+    ];
+
     public function shoeModel()
     {
         return $this->belongsTo('App\Models\ShoeModel');

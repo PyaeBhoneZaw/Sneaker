@@ -9,6 +9,10 @@ class Brand extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'brand_name',
+    ];
+
     public function shoeModels()
     {
         return $this->hasMany('App\Models\ShoeModel');

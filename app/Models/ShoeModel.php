@@ -9,6 +9,11 @@ class ShoeModel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'model_name',
+        'brand_id',
+    ];
+
     public function brand()
     {
         return $this->belongsTo('App\Models\Brand');
@@ -16,6 +21,6 @@ class ShoeModel extends Model
 
     public function shoes()
     {
-        return $this->hasMany('App\Models\Shoes');
+        return $this->hasMany('App\Models\Shoe');
     }
 }

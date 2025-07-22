@@ -19,6 +19,14 @@ class Admin
             return $next($request);
         }
 
+        // Return JSON response for API requests
+        if ($request->expectsJson() || $request->is('api/*')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. Admin access required.'
+            ], 403);
+        }
+
         abort(403, 'Unauthorized action.');
     }
 }
